@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Bienvenido a la Escape Room!</h1>
+    <p>Introduce el código correcto para avanzar.</p>
+
+    <input type="text" id="userInput" placeholder="Escribe tu código aquí">
+    <button onclick="checkCode()">Enviar</button>
+
+    <div id="feedback"></div>
+
+    <script>
+        // Lista de códigos secretos y sus redirecciones
+        const codes = {
+            "inicio": "https://example.com/clue1.html", // Cambia esto a una URL válida
+            "clave": "https://example.com/clue2.html",
+            "victoria": "https://example.com/success.html"
+        };
+
+        // Función para verificar el código ingresado
+        function checkCode() {
+            const input = document.getElementById("userInput").value.toLowerCase().trim();
+            const feedback = document.getElementById("feedback");
+
+            if (codes[input]) {
+                feedback.innerHTML = "¡Correcto! Redirigiendo...";
+                setTimeout(() => {
+                    window.location.href = codes[input];
+                }, 2000);
+            } else {
+                feedback.innerHTML = "Código incorrecto. Inténtalo de nuevo.";
+            }
+        }
+    </script>
+</body>
+</html>
