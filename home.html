@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Room</title>
+    <title>Página Principal</title>
     <style>
         body {
-            background-color: #222;
+            background-color: #333;
             color: #fff;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -24,46 +24,35 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: #666;
+            background-color: #555;
         }
     </style>
 </head>
 <body>
-    <h1>¡Bienvenido a la Escape Room!</h1>
-    <p>Introduce el código correcto para avanzar.</p>
-
-    <input type="text" id="userInput" placeholder="Escribe tu código aquí">
-    <button onclick="checkCode()">Enviar</button>
-
+    <h1>Bienvenido</h1>
+    <p>Introduce la contraseña para acceder:</p>
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="verifyPassword()">Acceder</button>
     <div id="feedback"></div>
 
-    <div style="position: relative; overflow: hidden; aspect-ratio: 1920/1080">
-        <video controls style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; overflow: hidden;">
-            <source src="https://ff-resource.aistudios.com/2024-12-30/677313ab949fa928cd94e70e.completed.mp4" type="video/mp4">
-            Tu navegador no soporta la reproducción de este video.
-        </video>
-    </div>
-
     <script>
-        // Lista de códigos secretos y sus redirecciones
-        const codes = {
-            "inicio": "https://example.com/clue1.html", // Cambia esto a una URL válida
-            "clave": "https://example.com/clue2.html",
-            "victoria": "https://example.com/success.html"
+        const passwords = {
+            "pista1": "clue1.html",
+            "pista2": "clue2.html",
+            "victoria": "success.html"
         };
 
-        // Función para verificar el código ingresado
-        function checkCode() {
-            const input = document.getElementById("userInput").value.toLowerCase().trim();
-            const feedback = document.getElementById("feedback");
+        function verifyPassword() {
+            const input = document.getElementById('password').value.trim();
+            const feedback = document.getElementById('feedback');
 
-            if (codes[input]) {
-                feedback.innerHTML = "¡Correcto! Redirigiendo...";
+            if (passwords[input]) {
+                feedback.innerHTML = "Contraseña correcta. Redirigiendo...";
                 setTimeout(() => {
-                    window.location.href = codes[input];
+                    window.location.href = passwords[input];
                 }, 2000);
             } else {
-                feedback.innerHTML = "Código incorrecto. Inténtalo de nuevo.";
+                feedback.innerHTML = "Contraseña incorrecta. Inténtalo de nuevo.";
             }
         }
     </script>
