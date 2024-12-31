@@ -49,34 +49,43 @@
     </div>
 
     <script>
-        // Función para crear un nuevo correo en la lista
-        function addMail(subject, preview, link) {
-            const mailList = document.getElementById('mailList');
+    // Función para crear un nuevo correo en la lista
+    function addMail(subject, preview, link) {
+        const mailList = document.getElementById('mailList');
 
-            const mailItem = document.createElement('li');
-            mailItem.className = 'mail-item';
-            mailItem.innerHTML = `
-                <strong>${subject}</strong>
-                <p>${preview}</p>
-            `;
+        const mailItem = document.createElement('li');
+        mailItem.className = 'mail-item';
+        mailItem.innerHTML = `
+            <strong>${subject}</strong>
+            <p>${preview}</p>
+        `;
 
-            mailItem.onclick = () => {
-                window.location.href = link;
-            };
+        mailItem.onclick = () => {
+            window.location.href = link;
+        };
 
-            mailList.appendChild(mailItem);
-        }
+        mailList.appendChild(mailItem);
+    }
 
-        // Añadir un nuevo correo después de 10 segundos al cargar la página
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                addMail(
-                    'Urgente: Acceso comprometido a los servidores',
-                    'Estimado equipo ACAST, detectamos un problema crítico en los servidores...',
-                    'correo_abierto.html'
-                );
-            }, 10000);
-        });
-    </script>
+    // Mostrar un mensaje de carga y añadir un nuevo correo después de 10 segundos
+    document.addEventListener('DOMContentLoaded', () => {
+        const mailList = document.getElementById('mailList');
+
+        const loadingItem = document.createElement('li');
+        loadingItem.className = 'mail-item';
+        loadingItem.innerHTML = '<strong>Cargando nuevo correo...</strong>';
+        mailList.appendChild(loadingItem);
+
+        setTimeout(() => {
+            mailList.removeChild(loadingItem); // Elimina el mensaje de carga
+            addMail(
+                'Urgente: Acceso comprometido a los servidores',
+                'Estimado equipo ACAST, detectamos un problema crítico en los servidores...',
+                'correo_abierto.html'
+            );
+        }, 10000);
+    });
+</script>
+
 </body>
 </html>
