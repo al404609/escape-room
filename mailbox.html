@@ -67,13 +67,15 @@
             mailList.appendChild(mailItem);
         }
 
-        // Añadir un nuevo correo al cargar la página
+        // Añadir un nuevo correo después de 10 segundos al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
-            addMail(
-                'Urgente: Acceso comprometido a los servidores',
-                'Estimado equipo ACAST, detectamos un problema crítico en los servidores...',
-                'correo_abierto.html'
-            );
+            setTimeout(() => {
+                addMail(
+                    'Urgente: Acceso comprometido a los servidores',
+                    'Estimado equipo ACAST, detectamos un problema crítico en los servidores...',
+                    'correo_abierto.html'
+                );
+            }, 10000);
         });
     </script>
 </body>
