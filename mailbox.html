@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandeja de Entrada</title>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0078d4;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        .container {
+            padding: 20px;
+        }
+        .mail-list {
+            list-style: none;
+            padding: 0;
+        }
+        .mail-item {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .mail-item:hover {
+            background-color: #f0f8ff;
+        }
+    </style>
+</head>
+<body>
+    <header>Bandeja de Entrada</header>
+    <div class="container">
+        <ul id="mailList" class="mail-list">
+            <!-- Los correos se añadirán aquí dinámicamente -->
+        </ul>
+    </div>
+
+    <script>
+        // Función para crear un nuevo correo en la lista
+        function addMail(subject, preview, link) {
+            const mailList = document.getElementById('mailList');
+
+            const mailItem = document.createElement('li');
+            mailItem.className = 'mail-item';
+            mailItem.innerHTML = `
+                <strong>${subject}</strong>
+                <p>${preview}</p>
+            `;
+
+            mailItem.onclick = () => {
+                window.location.href = link;
+            };
+
+            mailList.appendChild(mailItem);
+        }
+
+        // Añadir un nuevo correo al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            addMail(
+                'Urgente: Acceso comprometido a los servidores',
+                'Estimado equipo ACAST, detectamos un problema crítico en los servidores...',
+                'correo_abierto.html'
+            );
+        });
+    </script>
+</body>
+</html>
