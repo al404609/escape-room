@@ -135,7 +135,7 @@
             const correctCode = `void setup() {\n    pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(13, HIGH);\n    delay(1000);\n    digitalWrite(13, LOW);\n    delay(1000);\n}`;
 
             if (codeInput.replace(/\/\/.*|\s/g, '').trim() === correctCode.replace(/\/\/.*|\s/g, '').trim()) {
-                consoleDiv.innerHTML = "<span class='success'>Funcionamiento Básico reprogramado. ¡Buen trabajo!</span>";
+                consoleDiv.innerHTML = "<span class='success'>Funcionamiento Básico reprogramado. ¡Buen trabajo! Ve a la url ./challenge2.html</span>";
             } else {
                 consoleDiv.textContent = "Código incorrecto. Intenta de nuevo.";
             }
