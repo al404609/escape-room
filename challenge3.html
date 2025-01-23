@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room - Desafío 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .console {
+            background-color: #000;
+            color: #0f0;
+            font-family: monospace;
+            padding: 15px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 600px;
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+        }
+
+        .input-area {
+            margin-bottom: 20px;
+        }
+
+        .input-area textarea {
+            width: 80%;
+            height: 150px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 1rem;
+            resize: none;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .success {
+            color: #0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Desafío 3: El Dominio Completo</h1>
+        <div class="console" id="console"></div>
+        <div class="input-area">
+            <textarea id="codeInput" placeholder="Escribe tu código aquí..."></textarea>
+            <button onclick="checkCode()">Enviar Código</button>
+        </div>
+    </div>
+
+    <script>
+        const consoleDiv = document.getElementById("console");
+
+        const messageLines = [
+            "Te has adentrado en nuestras líneas, pero no es suficiente.",
+            "Somos los maestros del caos y nuestro objetivo es claro: desestabilizar.",
+            "Hemos detectado que los sistemas secundarios aún no han sido protegidos.",
+            "Estos sistemas controlan las señales de tráfico y son críticos para evitar desastres en la ciudad.",
+            "Para recuperar el dominio completo, debes programar una rutina que sincronice los semáforos.",
+            "El semáforo verde está en el pin 13, mientras que los dos pines anteriores controlan el amarillo y el rojo respectivamente.",
+            "Utiliza los siguientes tiempos: VERDE (5000 ms), AMARILLO (2000 ms), ROJO (7000 ms).",
+            "El reto no termina ahí. Cada ciclo debe repetirse indefinidamente para asegurar la fluidez del tráfico.",
+            "Escribe tu código en el área de entrada y demuestra que puedes tomar el control completo del sistema."
+        ];
+
+        let lineIndex = 0;
+
+        function displayMessageLine() {
+            if (lineIndex < messageLines.length) {
+                consoleDiv.textContent += messageLines[lineIndex] + "\n";
+                lineIndex++;
+                setTimeout(displayMessageLine, 3000);
+            }
+        }
+
+        displayMessageLine();
+
+        function checkCode() {
+            const codeInput = document.getElementById("codeInput").value;
+
+            const correctCode = `void setup() {
+    pinMode(13, OUTPUT);
+    pinMode(12, OUTPUT);
+    pinMode(11, OUTPUT);
+}
+
+void loop() {
+    digitalWrite(13, HIGH);
+    delay(5000);
+    digitalWrite(13, LOW);
+    digitalWrite(12, HIGH);
+    delay(2000);
+    digitalWrite(12, LOW);
+    digitalWrite(11, HIGH);
+    delay(7000);
+    digitalWrite(11, LOW);
+}`;
+
+            if (codeInput.replace(/\s/g, '').trim() === correctCode.replace(/\s/g, '').trim()) {
+                consoleDiv.innerHTML += "\n<span class='success'>¡Dominio completo recuperado! Excelente trabajo.</span>";
+                setTimeout(() => {
+                    window.location.href = 'final_challenge.html';
+                }, 2000);
+            } else {
+                consoleDiv.textContent += "\nCódigo incorrecto. Intenta de nuevo.";
+            }
+        }
+    </script>
+</body>
+</html>
