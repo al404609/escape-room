@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room - Reto Final</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff5722;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .console {
+            background-color: #000;
+            color: #0f0;
+            font-family: monospace;
+            padding: 15px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 600px;
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+        }
+
+        button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e64a19;
+        }
+
+        .success {
+            color: #0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reto Final: Código Encriptado</h1>
+        <div class="console" id="console"></div>
+        <div class="input-area">
+            <textarea id="codeInput" placeholder="Descifra el mensaje y escribe el código aquí..."></textarea>
+            <button onclick="checkCode()">Enviar Código</button>
+        </div>
+    </div>
+
+    <script>
+        const consoleDiv = document.getElementById("console");
+
+        const messageLines = [
+            "Has llegado al final de nuestro juego.",
+            "Pero todavía tienes un último obstáculo que superar.",
+            "Hemos encriptado el código que necesitas para desactivar nuestro sistema.",
+            "El código está basado en una clave especial: cada carácter ha sido desplazado 3 posiciones hacia adelante en el alfabeto.",
+            "Por ejemplo, 'A' se convierte en 'D', 'B' en 'E', y así sucesivamente.",
+            "Tu tarea es descifrar el siguiente mensaje y escribir el código resultante en el cuadro de texto.",
+            "Mensaje encriptado: 'Wrrn frqgurgho3slq3c16'
+            "Debes desactivar el pin 16 para neutralizar el sistema.",
+            "Buena suerte, esta es tu última oportunidad de demostrar tu valía."
+        ];
+
+        let lineIndex = 0;
+
+        function displayMessageLine() {
+            if (lineIndex < messageLines.length) {
+                consoleDiv.textContent += messageLines[lineIndex] + "\n";
+                lineIndex++;
+                setTimeout(displayMessageLine, 3000);
+            }
+        }
+
+        displayMessageLine();
+
+        function checkCode() {
+            const codeInput = document.getElementById("codeInput").value;
+
+            const correctCode = `void setup() {
+    pinMode(16, OUTPUT);
+}
+
+void loop() {
+    digitalWrite(16, LOW);
+}`;
+
+            if (codeInput.replace(/\s/g, '').trim() === correctCode.replace(/\s/g, '').trim()) {
+                consoleDiv.innerHTML += "\n<span class='success'>¡Felicidades! Has descifrado el código y desactivado el pin 16. ¡La ciudad está a salvo!</span>";
+            } else {
+                consoleDiv.textContent += "\nCódigo incorrecto. Intenta de nuevo.";
+            }
+        }
+    </script>
+</body>
+</html>
