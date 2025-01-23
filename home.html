@@ -3,57 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <title>Bienvenidos a la Escape Room</title>
     <style>
         body {
-            background-color: #333;
-            color: #fff;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             text-align: center;
             padding: 20px;
         }
-        input, button {
-            padding: 10px;
-            margin: 10px;
-            font-size: 16px;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
         button {
-            background-color: #444;
-            color: #fff;
+            background-color: #007BFF;
+            color: white;
             border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
             cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
+
         button:hover {
-            background-color: #555;
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>Bienvenido</h1>
-    <p>Introduce la contraseña para acceder:</p>
-    <input type="password" id="password" placeholder="Contraseña">
-    <button onclick="verifyPassword()">Acceder</button>
-    <div id="feedback"></div>
+    <div class="container">
+        <h1>¡Bienvenidos a la Escape Room!</h1>
+        <p>
+            Una misión especial te espera. Tendrás que usar tus conocimientos de Arduino,
+            resolver acertijos matemáticos y superar desafíos de lógica para completar la misión.
+        </p>
+        <p>
+            Prepárate para un reto emocionante que pondrá a prueba tu ingenio. ¿Estás listo para comenzar?
+        </p>
+        <button onclick="startGame()">¡Comenzar la Aventura!</button>
+    </div>
 
     <script>
-        const passwords = {
-            "pista1": "clue1.html",
-            "pista2": "clue2.html",
-            "victoria": "success.html"
-        };
-
-        function verifyPassword() {
-            const input = document.getElementById('password').value.trim();
-            const feedback = document.getElementById('feedback');
-
-            if (passwords[input]) {
-                feedback.innerHTML = "Contraseña correcta. Redirigiendo...";
-                setTimeout(() => {
-                    window.location.href = passwords[input];
-                }, 2000);
-            } else {
-                feedback.innerHTML = "Contraseña incorrecta. Inténtalo de nuevo.";
-            }
+        function startGame() {
+            window.location.href = 'game.html';
         }
     </script>
 </body>
