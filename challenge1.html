@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room - Desafío 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .challenge {
+            font-size: 1rem;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .console {
+            background-color: #000;
+            color: #0f0;
+            font-family: monospace;
+            padding: 15px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 600px;
+            height: 200px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .input-area {
+            margin-bottom: 20px;
+        }
+
+        .input-area input {
+            width: 80%;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .success {
+            color: #0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Desafío 1: Configuración de un Arduino</h1>
+        <p>
+            El primer paso para recuperar el control del sistema de tráfico es programar un dispositivo Arduino que active los semáforos en una secuencia lógica.
+        </p>
+        <div class="challenge">
+            <p><strong>Pista inicial:</strong> Necesitarás un pin específico para controlar el LED.</p>
+            <div id="hints"></div>
+        </div>
+        <div class="console" id="console">Consola lista...</div>
+        <div class="input-area">
+            <input type="text" id="codeInput" placeholder="Escribe tu código aquí...">
+            <button onclick="checkCode()">Enviar Código</button>
+        </div>
+    </div>
+
+    <script>
+        const hints = [
+            "Pista 1: Usa el modo de salida para configurar el pin.",
+            "Pista 2: El LED necesita encenderse y apagarse en un bucle.",
+            "Pista 3: Recuerda utilizar delay para controlar los intervalos.",
+            "Pista final: El número del pin es dos veces un dígito impar menos uno."
+        ];
+
+        let currentHint = 0;
+
+        function revealHint() {
+            if (currentHint < hints.length) {
+                const hintDiv = document.getElementById("hints");
+                const newHint = document.createElement("p");
+                newHint.textContent = hints[currentHint];
+                hintDiv.appendChild(newHint);
+                currentHint++;
+            }
+        }
+
+        setInterval(revealHint, 120000); // Cada 2 minutos
+
+        function checkCode() {
+            const codeInput = document.getElementById("codeInput").value;
+            const consoleDiv = document.getElementById("console");
+
+            const correctCode = `void setup() {\n    pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(13, HIGH); // Enciende el LED\n    delay(1000);           // Espera 1 segundo\n    digitalWrite(13, LOW);  // Apaga el LED\n    delay(1000);           // Espera 1 segundo\n}`;
+
+            if (codeInput.trim() === correctCode.trim()) {
+                consoleDiv.innerHTML = "<span class='success'>Funcionamiento Básico reprogramado. ¡Buen trabajo!</span>";
+            } else {
+                consoleDiv.textContent = "Código incorrecto. Intenta de nuevo.";
+            }
+        }
+    </script>
+</body>
+</html>
