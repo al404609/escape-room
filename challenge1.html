@@ -60,11 +60,13 @@
             margin-bottom: 20px;
         }
 
-        .input-area input {
+        .input-area textarea {
             width: 80%;
+            height: 150px;
             padding: 10px;
             font-family: monospace;
             font-size: 1rem;
+            resize: none;
         }
 
         button {
@@ -99,7 +101,7 @@
         </div>
         <div class="console" id="console">Consola lista...</div>
         <div class="input-area">
-            <input type="text" id="codeInput" placeholder="Escribe tu código aquí...">
+            <textarea id="codeInput" placeholder="Escribe tu código aquí..."></textarea>
             <button onclick="checkCode()">Enviar Código</button>
         </div>
     </div>
@@ -130,9 +132,9 @@
             const codeInput = document.getElementById("codeInput").value;
             const consoleDiv = document.getElementById("console");
 
-            const correctCode = `void setup() {\n    pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(13, HIGH); // Enciende el LED\n    delay(1000);           // Espera 1 segundo\n    digitalWrite(13, LOW);  // Apaga el LED\n    delay(1000);           // Espera 1 segundo\n}`;
+            const correctCode = `void setup() {\n    pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(13, HIGH);\n    delay(1000);\n    digitalWrite(13, LOW);\n    delay(1000);\n}`;
 
-            if (codeInput.trim() === correctCode.trim()) {
+            if (codeInput.replace(/\/\/.*|\s/g, '').trim() === correctCode.replace(/\/\/.*|\s/g, '').trim()) {
                 consoleDiv.innerHTML = "<span class='success'>Funcionamiento Básico reprogramado. ¡Buen trabajo!</span>";
             } else {
                 consoleDiv.textContent = "Código incorrecto. Intenta de nuevo.";
