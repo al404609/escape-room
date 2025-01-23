@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room - Introducción</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Introducción a la Misión</h1>
+        <p>
+            Año 2025. Te encuentras en una ciudad interurbana donde un grupo de hackers ha tomado el control
+            del sistema de tráfico inteligente, lo que está provocando accidentes y caos en las carreteras.
+            
+            Eres parte de un equipo especial encargado de recuperar el control antes de que las cosas empeoren.
+            Para ello, necesitarás superar una serie de desafíos relacionados con:
+        </p>
+        <ul>
+            <li>Programación básica de un sistema Arduino.</li>
+            <li>Montaje y reparación de circuitos electrónicos.</li>
+            <li>Resolución de problemas matemáticos, incluyendo ecuaciones simples y cálculos de áreas y perímetros.</li>
+        </ul>
+        <p>
+            Tendrás 90 minutos para completar la misión. Cada error que cometas reducirá tu tiempo disponible, así que piensa rápido
+            y trabaja en equipo para resolver los retos.
+        </p>
+        <p>
+            ¿Podrás restaurar el sistema antes de que sea demasiado tarde? ¡Es hora de demostrar tu ingenio!
+        </p>
+        <button onclick="startMission()">Comenzar la Misión</button>
+    </div>
+
+    <script>
+        function startMission() {
+            window.location.href = 'challenge1.html';
+        }
+    </script>
+</body>
+</html>
