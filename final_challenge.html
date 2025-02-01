@@ -67,6 +67,13 @@
         .success {
             color: #0f0;
         }
+
+        textarea {
+            width: 80%;
+            max-width: 600px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -89,7 +96,7 @@
             "El código está basado en una clave especial: cada carácter ha sido desplazado 3 posiciones hacia adelante en el alfabeto.",
             "Por ejemplo, 'A' se convierte en 'D', 'B' en 'E', y así sucesivamente.",
             "Tu tarea es descifrar el siguiente mensaje y escribir el código resultante en el cuadro de texto.",
-            "Mensaje encriptado: 'Wrrn frqgurgho3slq3c16'
+            "Mensaje encriptado: 'Wrrn frqgurgho3slq3c16'",
             "Debes desactivar el pin 16 para neutralizar el sistema.",
             "Buena suerte, esta es tu última oportunidad de demostrar tu valía."
         ];
@@ -107,7 +114,7 @@
         displayMessageLine();
 
         function checkCode() {
-            const codeInput = document.getElementById("codeInput").value;
+            const codeInput = document.getElementById("codeInput").value.trim();
 
             const correctCode = `void setup() {
     pinMode(16, OUTPUT);
@@ -117,10 +124,10 @@ void loop() {
     digitalWrite(16, LOW);
 }`;
 
-            if (codeInput.replace(/\s/g, '').trim() === correctCode.replace(/\s/g, '').trim()) {
+            if (codeInput.replace(/\s/g, '') === correctCode.replace(/\s/g, '')) {
                 consoleDiv.innerHTML += "\n<span class='success'>¡Felicidades! Has descifrado el código y desactivado el pin 16. ¡La ciudad está a salvo!</span>";
             } else {
-                consoleDiv.textContent += "\nCódigo incorrecto. Intenta de nuevo.";
+                consoleDiv.innerHTML += "\n<span style='color:red;'>Código incorrecto. Intenta de nuevo.</span>";
             }
         }
     </script>
