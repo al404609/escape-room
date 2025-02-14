@@ -80,5 +80,24 @@
         <h2>¡Felicidades!</h2>
         <p>Has recuperado el control del sistema de seguridad y desbloqueado las puertas. ¡Has escapado con éxito y derrotado al hacker!</p>
     </div>
+
+    <script>
+        function checkAnswer(challengeNum, correctAnswer) {
+            let userAnswer = document.getElementById(`answer${challengeNum}`).value.trim();
+            if (typeof correctAnswer === 'number') {
+                userAnswer = parseFloat(userAnswer);
+            }
+            if (userAnswer === correctAnswer) {
+                document.getElementById(`challenge${challengeNum}`).classList.remove('active');
+                if (document.getElementById(`challenge${challengeNum + 1}`)) {
+                    document.getElementById(`challenge${challengeNum + 1}`).classList.add('active');
+                } else {
+                    document.getElementById('finalMessage').classList.add('active');
+                }
+            } else {
+                alert('Respuesta incorrecta, inténtalo de nuevo.');
+            }
+        }
+    </script>
 </body>
 </html>
