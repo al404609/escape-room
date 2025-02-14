@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room - Hackeo Escolar</title>
+    <style>
+        body { font-family: 'Courier New', monospace; text-align: center; margin: 50px; background-color: black; color: green; }
+        .challenge { display: none; }
+        .active { display: block; }
+        input { margin-top: 10px; padding: 5px; background-color: black; color: green; border: 1px solid green; }
+        button { padding: 5px 10px; margin-top: 10px; background-color: green; color: black; border: none; cursor: pointer; }
+        button:hover { background-color: lime; }
+    </style>
+</head>
+<body>
+    <h1>Escape Room - Hackeo Escolar</h1>
+    <p>Un grupo de hackers ha tomado el control del sistema de seguridad de la escuela y ha bloqueado todas las puertas electrónicas. Eres el único con el conocimiento necesario para detenerlos. Debes resolver cada desafío para recuperar el control del sistema y restaurar la seguridad.</p>
+    
+    <div id="challenge1" class="challenge active">
+        <h2>Desafío 1: Restableciendo los servidores</h2>
+        <p>El hacker ha sobrecargado los servidores con procesos innecesarios. Para reiniciarlos, debes calcular cuánta energía han consumido. 
+        Si un servidor consume 60 kWh por hora y ha estado funcionando durante 2.5 horas, ¿cuánta energía ha gastado?</p>
+        <input type="number" id="answer1">
+        <button onclick="checkAnswer(1, 150)">Enviar</button>
+    </div>
+
+    <div id="challenge2" class="challenge">
+        <h2>Desafío 2: Desbloqueando la red de seguridad</h2>
+        <p>Para acceder al panel de control, necesitas ingresar un código en el sistema de seguridad basado en Arduino. 
+        ¿Qué instrucción en Arduino se usa para encender un LED en el pin 13 y activar la secuencia de desbloqueo?</p>
+        <input type="text" id="answer2">
+        <button onclick="checkAnswer(2, 'digitalWrite(13, HIGH)')">Enviar</button>
+    </div>
+
+    <div id="challenge3" class="challenge">
+        <h2>Desafío 3: Rompiendo el cortafuegos</h2>
+        <p>El hacker ha instalado un cortafuegos que bloquea los accesos del administrador. Resuelve la siguiente ecuación lógica:
+        <br><code>((A OR B) AND (NOT C)) OR (C AND A)</code>
+        <br>Si A=1, B=0 y C=1, ¿cuál es el resultado?</p>
+        <input type="number" id="answer3">
+        <button onclick="checkAnswer(3, 1)">Enviar</button>
+    </div>
+
+    <div id="challenge4" class="challenge">
+        <h2>Desafío 4: Desactivando el sistema de alarma</h2>
+        <p>El sistema de alarma solo se puede apagar mediante una combinación de puertas lógicas. Si tenemos la siguiente combinación:
+        <br><code>(X AND Y) OR (NOT Z)</code>
+        <br>Si X=1, Y=0 y Z=1, ¿cuál es el resultado?</p>
+        <input type="number" id="answer4">
+        <button onclick="checkAnswer(4, 0)">Enviar</button>
+    </div>
+
+    <div id="challenge5" class="challenge">
+        <h2>Desafío 5: Reiniciando el sistema central</h2>
+        <p>El sistema principal requiere una entrada específica de lógica combinacional para reiniciarse. Evalúa:
+        <br><code>(((A NAND B) AND (C XOR D)) OR (E AND F))</code>
+        <br>Si A=1, B=1, C=1, D=0, E=0, F=1, ¿cuál es el resultado?</p>
+        <input type="number" id="answer5">
+        <button onclick="checkAnswer(5, 0)">Enviar</button>
+    </div>
+    
+    <div id="challenge6" class="challenge">
+        <h2>Desafío 6: Resolviendo el código maestro</h2>
+        <p>El hacker ha protegido la base de datos con una ecuación de lógica booleana compleja. Resuelve:
+        <br><code>(((A AND B) OR (C NAND D)) XOR ((E OR F) AND (NOT G)))</code>
+        <br>Si A=1, B=0, C=1, D=1, E=0, F=1, G=0, ¿cuál es el resultado?</p>
+        <input type="number" id="answer6">
+        <button onclick="checkAnswer(6, 1)">Enviar</button>
+    </div>
+
+    <div id="challenge7" class="challenge">
+        <h2>Desafío 7: Calculando el perímetro de seguridad</h2>
+        <p>El sistema ha generado un perímetro de seguridad en forma de rectángulo para bloquear las salidas. Si la base mide 8 metros y la altura mide 5 metros, ¿cuál es su área?</p>
+        <input type="number" id="answer7">
+        <button onclick="checkAnswer(7, 40)">Enviar</button>
+    </div>
+
+    <div id="finalMessage" class="challenge">
+        <h2>¡Felicidades!</h2>
+        <p>Has recuperado el control del sistema de seguridad y desbloqueado las puertas. ¡Has escapado con éxito y derrotado al hacker!</p>
+    </div>
+</body>
+</html>
