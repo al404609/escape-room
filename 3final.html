@@ -1,0 +1,44 @@
+<div id="challengeSemaforo" class="challenge active">
+    <h2>Desafío: Código del Semáforo Temporizado</h2>
+    <p>El semáforo de la ciudad está bloqueado. Escribe el código correcto de Arduino para que funcione con un temporizador.</p>
+    <textarea id="answerSemaforo" rows="10" cols="50"></textarea>
+    <button onclick="checkSemaforoAnswer()">Enviar</button>
+</div>
+
+<script>
+    function normalizeCode(code) {
+        return code.replace(/\s+/g, '').toLowerCase();
+    }
+
+    function checkSemaforoAnswer() {
+        let userCode = normalizeCode(document.getElementById("answerSemaforo").value);
+
+        let correctCode = normalizeCode(`
+            int rojo = 8;
+            int amarillo = 9;
+            int verde = 10;
+            void setup() {
+                pinMode(rojo, OUTPUT);
+                pinMode(amarillo, OUTPUT);
+                pinMode(verde, OUTPUT);
+            }
+            void loop() {
+                digitalWrite(verde, HIGH);
+                delay(5000);
+                digitalWrite(verde, LOW);
+                digitalWrite(amarillo, HIGH);
+                delay(2000);
+                digitalWrite(amarillo, LOW);
+                digitalWrite(rojo, HIGH);
+                delay(5000);
+                digitalWrite(rojo, LOW);
+            }
+        `);
+
+        if (userCode === correctCode) {
+            alert("¡Perfecto! El semáforo vuelve a funcionar.");
+        } else {
+            alert("El código no es correcto, revisa nuevamente.");
+        }
+    }
+</script>
