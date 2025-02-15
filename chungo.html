@@ -1,0 +1,37 @@
+<div id="challengeFinal" class="challenge active">
+    <h2>Desafío Final: El Algoritmo del Hacker Supremo</h2>
+    <p>El hacker ha creado una barrera de seguridad con una ecuación lógica extremadamente compleja. Resuelve:</p>
+    <p><code>
+        (((A NAND B) NOR (C XOR (D AND E))) AND ((F OR G) XNOR (H NAND I))) OR (J AND (K NOR (L XOR M)))
+    </code></p>
+    <p>Si A=1, B=1, C=0, D=1, E=1, F=0, G=1, H=1, I=0, J=1, K=0, L=1, M=0, ¿cuál es el resultado?</p>
+    <input type="number" id="answerFinal">
+    <button onclick="checkFinalAnswer()">Enviar</button>
+</div>
+
+<script>
+    function nand(a, b) { return !(a && b) ? 1 : 0; }
+    function nor(a, b) { return !(a || b) ? 1 : 0; }
+    function xor(a, b) { return (a || b) && !(a && b) ? 1 : 0; }
+    function xnor(a, b) { return !xor(a, b) ? 1 : 0; }
+    function and(a, b) { return (a && b) ? 1 : 0; }
+    function or(a, b) { return (a || b) ? 1 : 0; }
+    function not(a) { return !a ? 1 : 0; }
+
+    function checkFinalAnswer() {
+        let userAnswer = parseFloat(document.getElementById("answerFinal").value.trim());
+
+        let A = 1, B = 1, C = 0, D = 1, E = 1, F = 0, G = 1, H = 1, I = 0, J = 1, K = 0, L = 1, M = 0;
+
+        let result = or(
+            and(nor(nand(A, B), xor(C, and(D, E))), xnor(or(F, G), nand(H, I))),
+            and(J, nor(K, xor(L, M)))
+        );
+
+        if (userAnswer === result) {
+            alert("¡Increíble! Has resuelto el enigma final del hacker supremo.");
+        } else {
+            alert("Respuesta incorrecta, inténtalo de nuevo.");
+        }
+    }
+</script>
